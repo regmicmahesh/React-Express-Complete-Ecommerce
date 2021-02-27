@@ -9,6 +9,7 @@ function App() {
     <div className="App">
       <Navbar />
         <Switch>
+            
           <Route exact path="/" component={HomePage} />
         </Switch>
     </div>
