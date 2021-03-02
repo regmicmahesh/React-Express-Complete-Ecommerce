@@ -29,23 +29,32 @@ export const loginUser = async (req: Request, res: Response) => {
       expiresIn: "7d",
     });
 
+    res.cookie("refToken", refreshToken, {
+      expires: new Date(Date.now() + 7 * 86400000),
+    });
+
+    res.cookie("token", accessToken, {
+      expires: new Date(Date.now() + 1200000),
+    });
+
     return res.status(200).json({
       status: "success",
-      body: { accessToken, refreshToken },
+      //TODO: Send user data too.
+      //Only to render from frontend, don't expect good input from user.
     });
   });
 };
 
 export const refreshToken = (req: Request, res: Response) => {
-  const { token } = req.body;
+  const { refToken } = req.cookies;
 
-  if (!token) {
+  if (!refToken) {
     return res.status(401).json({
       status: "fail",
       message: "Token not provided.",
     });
   }
-  jwt.verify(token, process.env.REFRESHJWTSECRET!, (err: any, user: any) => {
+  jwt.verify(refToken, process.env.REFRESHJWTSECRET!, (err: any, user: any) => {
     if (err) {
       return res.status(403).json({
         status: "fail",
@@ -61,9 +70,14 @@ export const refreshToken = (req: Request, res: Response) => {
       }
     );
 
+    res.clearCookie("token");
+    res.cookie("token", accessToken, {
+      expires: new Date(Date.now() + 1200000),
+    });
+
     res.json({
       status: "success",
-      body: { accessToken },
+      // body: { accessToken },
     });
   });
 };
@@ -89,10 +103,18 @@ export const registerUser = async (req: Request, res: Response) => {
   //rowCount == 1 but rows are 0 and command == "INSERT" for this query.
   const insertedUser = await register({ username, password });
 
-  
-
   return res.status(201).json({
     status: "success",
     message: "User Created Succesfully.",
   });
 };
+
+export const logoutUser = async (req: Request, res: Response) => {
+  res.clearCookie("token");
+  res.clearCookie("refToken");
+
+  res.json({
+    status: "success",
+    message: "logout done."
+  })
+}
