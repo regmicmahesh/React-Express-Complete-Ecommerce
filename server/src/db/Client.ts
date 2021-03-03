@@ -6,14 +6,14 @@ const pool = new Pool({
   host: process.env.DHOST,
   port: parseInt(process.env.DPORT!),
   user: process.env.DUSER,
-  password: process.env.DPASSWORD
+  password: process.env.DPASSWORD,
 });
 
 interface DBQueryFunc {
   (query: string, values: any[]): Promise<QueryResult>;
 }
 
-const DBQuery: DBQueryFunc = (query, values) => {
+const DBQuery: DBQueryFunc = (query, values = []) => {
   return new Promise((resolve, reject) => {
     pool
       .query(query, values)

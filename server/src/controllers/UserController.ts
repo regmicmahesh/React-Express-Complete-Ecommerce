@@ -20,12 +20,12 @@ export const loginUser = async (req: Request, res: Response) => {
     }
 
     //Succesful login
-    const { username } = rows[0];
-    const accessToken = jwt.sign({ username }, process.env.JWTSECRET!, {
+    const { username, id } = rows[0];
+    const accessToken = jwt.sign({ username, id }, process.env.JWTSECRET!, {
       expiresIn: "20m",
     });
 
-    const refreshToken = jwt.sign({ username }, process.env.REFRESHJWTSECRET!, {
+    const refreshToken = jwt.sign({ username, id }, process.env.REFRESHJWTSECRET!, {
       expiresIn: "7d",
     });
 

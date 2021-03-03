@@ -6,6 +6,8 @@ import cookieParser from "cookie-parser";
 require("dotenv").config();
 import UserRouter from "./routes/UserRoutes";
 import ProductRouter from "./routes/ProductRoutes";
+import OrderRouter from "./routes/OrderRoutes";
+
 
 const app = express();
 
@@ -26,6 +28,8 @@ app.use("/static", express.static("/static"));
 
 app.use("/auth", UserRouter);
 app.use("/products", ProductRouter);
+
+app.use("/order", OrderRouter);
 
 const PORT = parseInt(process.env.PORT || "8080");
 
