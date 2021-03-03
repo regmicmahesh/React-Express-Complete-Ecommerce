@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Navbar from "./components/nav/Navbar";
 import { Route, Switch } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import { UserContextProvider } from "./context/UserContext";
+import { UserContext, UserContextProvider } from "./context/UserContext";
 import LoginPage from "./pages/LoginPage";
-function App() {
+import LogoutPage from "./pages/LogoutPage";
+const App: React.FC = () => {
+ 
+
   return (
     <div className="App">
-      <UserContextProvider>
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route exact path="/login" component={LoginPage} />
-        </Switch>
-      </UserContextProvider>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/logout" component={LogoutPage}/>
+      </Switch>
     </div>
   );
-}
+};
 
 export default App;

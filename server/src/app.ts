@@ -26,6 +26,8 @@ app.use(cookieParser());
 //Using Static Middleware to parse Static Body
 app.use("/static", express.static("/static"));
 
+app.use("/uploads", express.static("/uploads"))
+
 app.use("/auth", UserRouter);
 app.use("/products", ProductRouter);
 

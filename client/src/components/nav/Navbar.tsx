@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../../context/UserContext";
 import NavItem from "./NavItem";
 
 const Navbar: React.FC = () => {
+  
   const { isLoggedIn, username } = useContext(UserContext);
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">

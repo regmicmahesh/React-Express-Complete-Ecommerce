@@ -1,17 +1,11 @@
 import { createContext, useContext, useState } from "react";
 import React from "react";
 
-export type UserContextType = {
-  isLoggedIn: boolean;
-  username: string;
-  login: (username: string) => void;
-  logout: () => void;
-};
 
-export const UserContext = createContext<UserContextType>({
+export const UserContext = createContext({
   isLoggedIn: false,
   username: "",
-  login: () => {},
+  login: (username: string) => {},
   logout: () => {},
 });
 
@@ -20,8 +14,9 @@ export const useUserContext = () => useContext(UserContext);
 export const UserContextProvider: React.FC = ({ children }) => {
   const username = localStorage.getItem("username") || "";
 
+  
   const [userStatus, setUserState] = useState({
-    isLoggedIn: false,
+    isLoggedIn: username !== "" ? true: false,
     username,
   });
 
