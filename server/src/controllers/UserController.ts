@@ -30,15 +30,18 @@ export const loginUser = async (req: Request, res: Response) => {
     });
 
     res.cookie("refToken", refreshToken, {
+      httpOnly: true,
       expires: new Date(Date.now() + 7 * 86400000),
     });
 
     res.cookie("token", accessToken, {
+      httpOnly: true,
       expires: new Date(Date.now() + 1200000),
     });
 
     return res.status(200).json({
       status: "success",
+      username, id
       //TODO: Send user data too.
       //Only to render from frontend, don't expect good input from user.
     });

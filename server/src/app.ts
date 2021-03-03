@@ -12,7 +12,7 @@ import OrderRouter from "./routes/OrderRoutes";
 const app = express();
 
 //Alow Every Request
-app.use(cors({ origin: "*" }));
+app.use(cors({credentials: true, origin: 'http://localhost:3000'}));
 
 //Better logs in the console.
 app.use(morgan("dev"));

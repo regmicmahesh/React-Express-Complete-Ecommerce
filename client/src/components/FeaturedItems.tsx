@@ -12,7 +12,7 @@ const FeaturedItems: React.FC = () => {
               <div className="col-md-4">
                 <div className="card">
                   <img
-                    src="https://lh3.googleusercontent.com/proxy/IpmjarG2xcQf1OWkXPWdxTHmwZhhdAHR0Fef4g6hXZ3_7qBfxp-VW2XmBZjcBQadfaN98enKWNIU9HxkPszI2JajNmuoJ068_3YtFU3GnDXwngs1BSrzWh5ysWp9NSwtLXTfm5HtKsXb"
+                    src="https://lh3.googleusercontent.com/proxy/zf_Ue9jEgKrdE_sXiuxTxmazYeIu0QcU8dbG6CcVkZ2xFh5-pDBfpIkRXXJjinsRjs59A_GcdLselnuEC_JVogzBP0K3eyJ9reZQwCL3Yy43405QaSZHOs9t5YvVUD-2tYCOdu8ON1nM"
                     alt=""
                     className="card-img-top"
                   />
